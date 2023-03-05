@@ -1,0 +1,23 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Tatkal Autofill Popup",
+  "description": "Tatkal Autofill Tool which helps you to book tatkal tickets at fast. It autofills & submits all data during booking time",
+  "version": "0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "irctc400.png",
+    "default_title": "IRCTC Autofill"
+  },
+  "icons": {
+    "16": "irctc16.png",
+    "48": "irctc48.png",
+    "128": "irctc128.png"
+  },
+  "background": {
+    "service_worker": "./background_script.js"
+  },
+  "permissions": ["scripting", "tabs", "storage"],
+  "host_permissions": ["https://www.irctc.co.in/"]
+}

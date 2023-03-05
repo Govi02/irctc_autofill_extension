@@ -1,0 +1,238 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.heading h1 {
+  color: #000000;
+}
+
+.form-container {
+  width: 720px;
+  /* height: 720px; */
+  overflow: auto;
+  background-color: #01157adb;
+  padding: 8px;
+  border-radius: 2px;
+}
+#irctc-credentials-form,
+#feature-detail-form,
+#journey-details-form,
+#passenger-details-form,
+#infant-details-form,
+#gst-details-form,
+#contact-form,
+#other-preferences-form,
+#travel-insurance-form,
+#payment-details-form {
+  padding: 15px;
+  background: #c9eaff;
+  border-radius: 4px;
+}
+
+.section-label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  display: flex;
+  flex-direction: column;
+}
+.subtitle {
+  font-size: 13px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  color: #0800ff;
+}
+.form-container label {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5;
+}
+.form-container input,
+.form-container select {
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 4px;
+  border: 0px;
+  margin-top: 6px;
+  box-shadow: 0px 0px 3px 0 #bdbdbd;
+}
+.form-container input[type="checkbox"],
+.form-container input[type="radio"] {
+  border: 0px !important;
+  box-shadow: none;
+  margin: 0px;
+}
+#passenger-details-form select {
+  max-width: 140px;
+}
+
+input#book_at_tatkal_time {
+  margin-top: 2px;
+  width: fit-content;
+}
+
+label[for="book_at_tatkal_time"] {
+  color: #ff0000;
+}
+.span {
+  color: #ff0000;
+  background-color: #ff0000;
+}
+.dropdown-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 1px;
+  border-radius: 4px;
+  max-height: 180px;
+  overflow: auto;
+  box-shadow: 1px 1px 1px 0 #bdbdbd;
+}
+
+.dropdown-list-item {
+  background-color: #ffffff;
+  padding: 6px 6px;
+  font-size: 14px;
+}
+.dropdown-list-item:hover {
+  background-color: #00ed9a;
+  cursor: pointer;
+}
+
+#passenger-details-form .number-input,
+#infant-details-form .number-input {
+  max-width: 60px !important;
+}
+#submit-btn,
+#load-btn-1,
+#load-btn-2,
+#clear-btn {
+  background-color: #00a45a !important;
+}
+#connect-btn {
+  background-color: #ff0000 !important;
+}
+#submit-btn,
+#connect-btn,
+#load-btn-1,
+#load-btn-2,
+#clear-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border: 0px;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+}
+#submit-btn:active {
+  background-color: #ff0000 !important;
+}
+#load-btn-1:active {
+  background-color: #ff0000 !important;
+}
+#load-btn-2:active {
+  background-color: #ff0000 !important;
+}
+#clear-btn:active {
+  background-color: #ff0000 !important;
+}
+/* ====================================================================================== */
+#submit-btn-top,
+#load-btn-1-top,
+#load-btn-2-top,
+#clear-btn-top {
+  background-color: #00a45a !important;
+}
+#connect-btn-top {
+  background-color: #ff0000 !important;
+}
+#submit-btn-top,
+#connect-btn-top,
+#load-btn-1-top,
+#load-btn-2-top,
+#clear-btn-top {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border: 0px;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+}
+#submit-btn-top:active {
+  background-color: #ff0000 !important;
+}
+#load-btn-1-top:active {
+  background-color: #ff0000 !important;
+}
+#load-btn-2-top:active {
+  background-color: #ff0000 !important;
+}
+#clear-btn-top:active {
+  background-color: #ff0000 !important;
+}
+/* ======================================================================================= */
+.info {
+  margin: auto;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+.charges {
+  margin-top: 4px;
+  color: #ff0000;
+}
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.w-full {
+  width: 100%;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.grid {
+  display: grid;
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.col-span-full {
+  grid-column: 1 / -1;
+}
+.gap-2 {
+  gap: 0.5rem; /* 16px */
+}
+.gap-4 {
+  gap: 1rem; /* 16px */
+}
+.gap-1 {
+  gap: 1rem;
+  margin: auto;
+}
+.gap-6 {
+  gap: 1.5rem; /* 24px */
+}
+
+.dropdown-list {
+  display: none;
+}
+.dropdown:focus-within .dropdown-list,
+.dropdown-list:hover,
+.dropdown-list:focus,
+.dropdown-list:focus-within {
+  display: block;
+}

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>IRCTC Autofill</title>
+  </head>
+
+  <body>
+    <div class="flex items-center gap-4 heading">
+      <img src="irctc400.png" width="48" height="48" />
+      <h3>IRCTC<br/>Autofill &nbsp; &nbsp; &nbsp; <h1 id="span">Loading...</h1></h3>
+      <div class="flex gap-2">
+        <button id="submit-btn-top">SAVE DATA</button>
+        <button id="load-btn-1-top">LOAD DATA</button>
+        <button id="clear-btn-top">CLEAR DATA</button>
+        <button id="connect-btn-top">CONNECT</button>
+      </div>
+    </div>
+    
+    <div class="form-container flex flex-col gap-2">
+      <div class="flex info">
+        For Tatkal bookings, Click CONNECT button 20secs before 10:00am / 11:00am
+      </div>
+      <div id="irctc-credentials-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">IRCTC Login Credentials</div>
+        <div class="w-full flex flex-col">
+          <label for="irctc-login"> IRCTC Login username </label>
+          <input id="irctc-login" name="irctc-login" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="irctc-password"> IRCTC Login password </label>
+          <input id="irctc-password" name="irctc-password" type="password" />
+        </div>
+      </div>
+      <div id="feature-detail-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">Set configuration</div>
+        <div class="w-full flex gap-4 items-start">
+          <input
+            id="book_at_tatkal_time"
+            name="book_at_tatkal_time"
+            type="checkbox"
+          />
+          <label for="book_at_tatkal_time">
+            Book ticket at tatkal timings (10:00am or 11:00am). Only applicable if tatkal quota is selected.
+          </label>
+        </div>
+      </div>
+
+      <div id="journey-details-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">Journey details</div>
+        <div class="w-full flex flex-col dropdown">
+          <label for="from-station-input"> From station </label>
+          <input
+            id="from-station-input"
+            name="from-station"
+            class="dropdown-input"
+            type="text"
+            placeholder="Search station"
+          />
+          <ul id="from-station-list" class="dropdown-list"></ul>
+        </div>
+
+        <div class="w-full flex flex-col dropdown">
+          <label for="destination-station-input"> Destination station </label>
+          <input
+            id="destination-station-input"
+            name="destination-station"
+            class="dropdown-input"
+            type="text"
+            placeholder="Search station"
+          />
+          <ul id="destination-station-list" class="dropdown-list"></ul>
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="journey-date"> Journey date </label>
+          <input id="journey-date" name="journey-date" type="date" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="train-no"> Train number </label>
+          <input
+            id="train-no"
+            name="train-no"
+            type="text"
+            placeholder="5-digit Train number"
+          />
+        </div>
+
+        <div class="w-full flex flex-col dropdown">
+          <label for="journey-class-input"> Journey class </label>
+          <input
+            id="journey-class-input"
+            name="journey-class"
+            class="dropdown-input"
+            type="text"
+            placeholder="Select class"
+          />
+          <ul id="journey-class-list" class="dropdown-list"></ul>
+        </div>
+
+        <div class="w-full flex flex-col dropdown">
+          <label for="quota-input"> Quota </label>
+          <input
+            id="quota-input"
+            name="quota"
+            class="dropdown-input"
+            type="text"
+            placeholder="Select quota"
+          />
+          <ul id="quota-list" class="dropdown-list"></ul>
+        </div>
+      </div>
+
+      <div id="passenger-details-form" class="flex flex-col gap-4">
+        <div class="section-label col-span-full">Add Passenger details</div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="passenger-name-1"> Passenger #1 name </label>
+            <input id="passenger-name-1" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col number-input">
+            <label for="age-1"> Age </label>
+            <input id="age-1" name="age" type="number" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-gender-1"> Gender </label>
+            <select name="gender" id="passenger-gender-1"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-berth-1"> Berth Preference </label>
+            <select name="berth" id="passenger-berth-1"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-nationality-1"> Nationality </label>
+            <select
+              name="nationality"
+              id="passenger-nationality-1"
+              defaultvalue="IN"
+            ></select>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="passenger-name-2"> Passenger #2 name </label>
+            <input id="passenger-name-2" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col number-input">
+            <label for="age-2"> Age </label>
+            <input id="age-2" name="age" type="number" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-gender-2"> Gender </label>
+            <select name="gender" id="passenger-gender-2"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-berth-2"> Berth Preference </label>
+            <select name="berth" id="passenger-berth-2"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-nationality-2"> Nationality </label>
+            <select name="nationality" id="passenger-nationality-2"></select>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="passenger-name-3"> Passenger #3 name </label>
+            <input id="passenger-name-3" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col number-input">
+            <label for="age-3"> Age </label>
+            <input id="age-3" name="age" type="number" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-gender-3"> Gender </label>
+            <select name="gender" id="passenger-gender-3"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-berth-3"> Berth Preference </label>
+            <select name="berth" id="passenger-berth-3"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-nationality-3"> Nationality </label>
+            <select name="nationality" id="passenger-nationality-3"></select>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="passenger-name-4"> Passenger #4 name </label>
+            <input id="passenger-name-4" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col number-input">
+            <label for="age-4"> Age </label>
+            <input id="age-4" name="age" type="number" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-gender-4"> Gender </label>
+            <select name="gender" id="passenger-gender-4"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-berth-4"> Berth Preference </label>
+            <select name="berth" id="passenger-berth-4"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="passenger-nationality-4"> Nationality </label>
+            <select name="nationality" id="passenger-nationality-4"></select>
+          </div>
+        </div>
+      </div>
+
+      <div id="infant-details-form" class="flex flex-col gap-4">
+        <div class="section-label col-span-full">Add Infant details</div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="infant-name-1"> Name </label>
+            <input id="infant-name-1" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="infant-age-1"> Age </label>
+            <select name="age" id="infant-age-1"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="infant-gender-1"> Gender </label>
+            <select name="gender" id="infant-gender-1"></select>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-full flex flex-col">
+            <label for="infant-name-2"> Name </label>
+            <input id="infant-name-2" name="name" type="text" />
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="infant-age-2"> Age </label>
+            <select name="age" id="infant-age-2"></select>
+          </div>
+          <div class="w-full flex flex-col">
+            <label for="infant-gender-2"> Gender </label>
+            <select name="gender" id="infant-gender-2"></select>
+          </div>
+        </div>
+      </div>
+      <div id="gst-details-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">GST details</div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-number"> GST number </label>
+          <input id="gstin-number" name="gstin-number" type="text" />
+        </div>
+        <div></div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-name"> Name </label>
+          <input id="gstin-name" name="gstin-name" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-flat"> Flat/Door/Block No. </label>
+          <input id="gstin-flat" name="gstin-flat" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-street"> Street/Lane (Optional) </label>
+          <input id="gstin-street" name="gstin-street" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-area"> Area/Locality (Optional) </label>
+          <input id="gstin-area" name="gstin-area" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-PIN"> PIN </label>
+          <input id="gstin-PIN" name="gstin-PIN" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="gstin-City"> City </label>
+          <input id="gstin-City" name="gstin-City" type="text" />
+        </div>
+      </div>
+      <div id="contact-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">Contact details</div>
+        <div class="w-full flex flex-col">
+          <label for="mobileNumber"> Mobile number </label>
+          <input id="mobileNumber" name="mobileNumber" type="text" />
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="email"> Email </label>
+          <input id="email" name="email" type="text" />
+        </div>
+      </div>
+      <div id="other-preferences-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">Other Preferences</div>
+        <div class="w-full gap-2 flex items-center">
+          <input id="autoUpgradation" name="autoUpgradation" type="checkbox" />
+          <label for="autoUpgradation"> Consider for Auto Upgradation </label>
+        </div>
+        <div class="w-full gap-2 flex items-center">
+          <input id="confirmberths" name="confirmberths" type="checkbox" />
+          <label for="confirmberths">
+            Book only if confirm berths are allotted.
+          </label>
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="reservationChoice"> Reservation Choice </label>
+          <select name="reservationChoice" id="reservationChoice"></select>
+        </div>
+        <div class="w-full flex flex-col">
+          <label for="coachId"> Preferred Coach No. </label>
+          <input id="coachId" name="coachId" type="text" />
+        </div>
+      </div>
+      <div id="travel-insurance-form" class="grid grid-cols-2 gap-4">
+        <div class="section-label col-span-full">Travel Insurance</div>
+        <div class="w-full gap-2 flex items-center">
+          <input
+            id="travelInsuranceOpted-1"
+            value="yes"
+            name="travelInsuranceOpted"
+            type="radio"
+          />
+          <label for="travelInsuranceOpted-1">
+            Yes, and I accept the
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://contents.irctc.co.in/en/InsuranceTermCondition.pdf"
+            >
+              terms &amp; conditions</a
+            >
+          </label>
+        </div>
+        <div class="w-full gap-2 flex items-center">
+          <input
+            id="travelInsuranceOpted-2"
+            value="no"
+            name="travelInsuranceOpted"
+            type="radio"
+          />
+          <label for="travelInsuranceOpted-2">
+            No, I don't want travel insurance
+          </label>
+        </div>
+      </div>
+      <div id="payment-details-form" class="grid grid-cols-1 gap-4">
+        <div class="section-label col-span-full">
+          Payment Type
+          <span class="subtitle"
+            >Convenience fee is charged by IRCTC platform. We don't charge
+            anything from user.</span
+          >
+        </div>
+        <div class="w-full flex gap-2 items-start payment-type">
+          <input id="paymentType-1" value="3" name="paymentType" type="radio" />
+          <label for="paymentType-1" class="flex flex-col">
+            Pay through Credit & Debit Cards / Net Banking / Wallets / Bharat QR
+            / Pay on Delivery/ Rewards and Others
+            <span class="charges">Convenience Fee: ₹15/- + GST</span>
+          </label>
+        </div>
+        <div class="w-full flex gap-2 items-start payment-type">
+          <input id="paymentType-2" value="2" name="paymentType" type="radio" />
+          <label for="paymentType-2" class="flex flex-col">
+            Pay through BHIM/UPI
+            <span class="charges">Convenience Fee: ₹10/- + GST</span>
+          </label>
+        </div>
+      </div>
+      <div class="flex info">
+        For tatkal bookings, click CONNECT button 20secs before 10:00am / 11:00am
+      </div>
+      <div class="flex gap-1">
+        <button id="submit-btn">SAVE DATA</button>
+        <button id="load-btn-1">LOAD DATA</button>
+        <button id="clear-btn">CLEAR DATA</button>
+        <button id="connect-btn">CONNECT</button>
+      </div>
+    </div>
+    <script src="location.js"></script>
+    <script src="data.js"></script>
+    <script src="popup.js"></script>
+    <script src="tesseract.js"></script>
+  </body>
+</html>
