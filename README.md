@@ -1,5 +1,5 @@
 # IRCTC Autofill Extension (Chrome)
-Tatkal Autofill Tool which helps you to book tatkal tickets at fast. It autofills &amp; submits all data during booking time.
+Tatkal Autofill Tool which helps you to book tatkal tickets at fast. It autofills and submits all data during booking time.
 
 ***Steps for IRCTC Train Ticket Booking:***
 
