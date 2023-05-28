@@ -56,7 +56,7 @@ function loadLoginDetails() {
     "input[type='text'][formcontrolname='captcha']"
   );
 
-  const submitBtn = loginModal.querySelector("button[type='submit']");
+//   const submitBtn = loginModal.querySelector("button[type='submit']");
 
   captchaInput.addEventListener("mouseenter", function () {
     const captcha = document.querySelector(".captcha-img").src;
@@ -69,9 +69,9 @@ function loadLoginDetails() {
     }
   });
 
-  submitBtn.addEventListener("mouseenter", function () {
-    submitBtn.click();
-  });
+//   submitBtn.addEventListener("mouseenter", function () {
+//     submitBtn.click();
+//   });
 
   userNameInput.value = user_data["irctc_credentials"]["user_name"] ?? "";
   userNameInput.dispatchEvent(new Event("input"));
